@@ -2,12 +2,12 @@
 <assembly xmlns="urn:schemas-microsoft-com:asm.v1"
                  manifestVersion="1.0">
 <assemblyIdentity
-    version="1.0.0.0"
+    version="0.1.0.0"
     processorArchitecture="*"
-    name="Notepad++"
+    name="Cherry++"
     type="win32"
 />
-<description>Notepad++</description>
+<description>Cherry++</description>
 <dependency>
     <dependentAssembly>
         <assemblyIdentity

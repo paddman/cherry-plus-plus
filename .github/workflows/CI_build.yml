@@ -157,14 +157,14 @@ jobs:
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v3
 
-    - name: Modify resource.h N++ version to avoid confusion
+    - name: Modify resource.h Cherry++ version to avoid confusion
       working-directory: PowerEditor\src\
       run: |
            $content = Get-Content -Path 'resource.h'
-           $newContent = $content -replace 'TEXT\(\"Notepad\+\+ v.*\"\)', 'TEXT("Notepad++ GH_BUILD")'
+           $newContent = $content -replace 'TEXT\(\"Notepad\+\+ v.*\"\)', 'TEXT("Cherry++ 0.1 GH_BUILD")'
            $newContent | Set-Content -Path 'resource.h'
 
-    - name: MSBuild of n++ exe
+    - name: MSBuild of Cherry++ exe
       working-directory: PowerEditor\visual.net\
       run: msbuild notepadPlus.sln /m /p:configuration="${{ matrix.build_configuration }}" /p:platform="${{ matrix.build_platform }}"
 
@@ -172,36 +172,36 @@ jobs:
       if: matrix.build_platform == 'x64' && matrix.build_configuration == 'Release'
       uses: actions/upload-artifact@v7
       with:
-          name: Notepad++.MSVC.${{ matrix.build_platform}}.${{ matrix.build_configuration}}
-          path: PowerEditor\bin64\Notepad++.exe
+          name: Cherry++.MSVC.${{ matrix.build_platform}}.${{ matrix.build_configuration}}
+          path: PowerEditor\bin64\cherry++.exe
 
     - name: Archive artifacts for Win32 / Release
       if: matrix.build_platform == 'Win32' && matrix.build_configuration == 'Release'
       uses: actions/upload-artifact@v7
       with:
-          name: Notepad++.MSVC.${{ matrix.build_platform}}.${{ matrix.build_configuration}}
-          path: PowerEditor\bin\Notepad++.exe
+          name: Cherry++.MSVC.${{ matrix.build_platform}}.${{ matrix.build_configuration}}
+          path: PowerEditor\bin\cherry++.exe
 
     - name: Archive artifacts for ARM64 / Release
       if: matrix.build_platform == 'ARM64' && matrix.build_configuration == 'Release'
       uses: actions/upload-artifact@v7
       with:
-          name: Notepad++.MSVC.${{ matrix.build_platform}}.${{ matrix.build_configuration}}
-          path: PowerEditor\binarm64\Notepad++.exe
+          name: Cherry++.MSVC.${{ matrix.build_platform}}.${{ matrix.build_configuration}}
+          path: PowerEditor\binarm64\cherry++.exe
 
     - name: Archive artifacts for ARM64|x64 / Debug
       if: (matrix.build_platform == 'ARM64' || matrix.build_platform == 'x64') && matrix.build_configuration == 'Debug'
       uses: actions/upload-artifact@v7
       with:
-          name: Notepad++.MSVC.${{ matrix.build_platform}}.${{ matrix.build_configuration}}
-          path: PowerEditor\visual.net\${{ matrix.build_platform}}\${{ matrix.build_configuration}}\Notepad++.exe
+          name: Cherry++.MSVC.${{ matrix.build_platform}}.${{ matrix.build_configuration}}
+          path: PowerEditor\visual.net\${{ matrix.build_platform}}\${{ matrix.build_configuration}}\cherry++.exe
 
     - name: Archive artifacts for Win32 / Debug
       if: matrix.build_platform == 'Win32' && matrix.build_configuration == 'Debug'
       uses: actions/upload-artifact@v7
       with:
-          name: Notepad++.MSVC.${{ matrix.build_platform}}.${{ matrix.build_configuration}}
-          path: PowerEditor\visual.net\${{ matrix.build_configuration}}\Notepad++.exe
+          name: Cherry++.MSVC.${{ matrix.build_platform}}.${{ matrix.build_configuration}}
+          path: PowerEditor\visual.net\${{ matrix.build_configuration}}\cherry++.exe
 
     - name: (cache) Restore Python modules for Win32 / Debug
       if: matrix.build_platform == 'Win32' && matrix.build_configuration == 'Debug' && env.PYTHON_ALLOW_CACHE == 'true' && contains(needs.before_build.outputs.title, '[force nopythoncache]') != true
@@ -227,7 +227,7 @@ jobs:
       if: matrix.build_platform == 'Win32' && matrix.build_configuration == 'Debug'
       working-directory: .\
       run: |
-           Copy-Item "PowerEditor\visual.net\Debug\Notepad++.exe" -Destination "PowerEditor\bin"
+           Copy-Item "PowerEditor\visual.net\Debug\cherry++.exe" -Destination "PowerEditor\bin"
            Copy-Item "PowerEditor\src\langs.model.xml" -Destination "PowerEditor\bin"
            Copy-Item "PowerEditor\src\stylers.model.xml" -Destination "PowerEditor\bin"
            Copy-Item "PowerEditor\installer\functionList" -Destination "PowerEditor\bin" -Recurse
@@ -260,14 +260,14 @@ jobs:
     # - name: Add msbuild to PATH
       # uses: microsoft/setup-msbuild@v3
 
-    # - name: Modify resource.h N++ version to avoid confusion
+    # - name: Modify resource.h Cherry++ version to avoid confusion
       # working-directory: PowerEditor\src\
       # run: |
            # $content = Get-Content -Path 'resource.h'
-           # $newContent = $content -replace 'TEXT\(\"Notepad\+\+ v.*\"\)', 'TEXT("Notepad++ GH_BUILD")'
+           # $newContent = $content -replace 'TEXT\(\"Notepad\+\+ v.*\"\)', 'TEXT("Cherry++ 0.1 GH_BUILD")'
            # $newContent | Set-Content -Path 'resource.h'
 
-    # - name: MSBuild of n++ exe
+    # - name: MSBuild of Cherry++ exe
       # working-directory: PowerEditor\visual.net\
       # run: msbuild notepadPlus.sln /m /p:configuration="${{ matrix.build_configuration }}" /p:platform="${{ matrix.build_platform }}" /p:PlatformToolset="ClangCL"
 
@@ -291,11 +291,11 @@ jobs:
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v3
 
-    - name: Modify resource.h N++ version to avoid confusion
+    - name: Modify resource.h Cherry++ version to avoid confusion
       working-directory: PowerEditor\src\
       run: |
            $content = Get-Content -Path 'resource.h'
-           $newContent = $content -replace 'TEXT\(\"Notepad\+\+ v.*\"\)', 'TEXT("Notepad++ GH_BUILD")'
+           $newContent = $content -replace 'TEXT\(\"Notepad\+\+ v.*\"\)', 'TEXT("Cherry++ 0.1 GH_BUILD")'
            $newContent | Set-Content -Path 'resource.h'
 
     - name: Add nmake to PATH
@@ -367,12 +367,12 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v6
 
-    - name: Modify resource.h N++ version to avoid confusion
+    - name: Modify resource.h Cherry++ version to avoid confusion
       working-directory: PowerEditor\src\
       shell: pwsh
       run: |
            $content = Get-Content -Path 'resource.h'
-           $newContent = $content -replace 'TEXT\(\"Notepad\+\+ v.*\"\)', 'TEXT("Notepad++ GH_BUILD")'
+           $newContent = $content -replace 'TEXT\(\"Notepad\+\+ v.*\"\)', 'TEXT("Cherry++ 0.1 GH_BUILD")'
            $newContent | Set-Content -Path 'resource.h'
 
     - name: Install and update MSYS2 tools
@@ -401,5 +401,5 @@ jobs:
     - name: Archive artifacts for ${{ matrix.msys }} / ${{ matrix.configuration }}
       uses: actions/upload-artifact@v7
       with:
-        name: Notepad++.${{ matrix.compiler }}.${{ matrix.arch }}.${{ matrix.configuration }}
+        name: Cherry++.${{ matrix.compiler }}.${{ matrix.arch }}.${{ matrix.configuration }}
         path: bin.${{ matrix.compiler }}.${{ matrix.arch }}${{ matrix.configuration == 'Debug' && '-debug' || '' }}\notepad++.exe
