@@ -17,6 +17,7 @@
 
 #include <shlwapi.h>
 #include "Notepad_plus_Window.h"
+#include "Cherry/CherryProduct.h"
 
 HWND Notepad_plus_Window::gNppHWND = NULL;
 
@@ -99,7 +100,7 @@ void Notepad_plus_Window::init(HINSTANCE hInst, HWND parent, const wchar_t *cmdL
 	_hSelf = ::CreateWindowEx(
 		WS_EX_ACCEPTFILES | (_notepad_plus_plus_core._nativeLangSpeaker.isRTL() ? WS_EX_LAYOUTRTL : 0),
 		_className,
-		L"Notepad++",
+		cherry::product::displayName,
 		(WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN),
 		// CreateWindowEx bug : set all 0 to walk around the problem
 		0, 0, 0, 0,
@@ -420,12 +421,12 @@ void Notepad_plus_Window::init(HINSTANCE hInst, HWND parent, const wchar_t *cmdL
 	{
 		std::chrono::steady_clock::duration nppInitTime = (std::chrono::steady_clock::now() - g_nppStartTimePoint) - g_pluginsLoadingTime - sessionLoadingTime - cmdlineParamsLoadingTime;
 		std::wstringstream wss;
-		wss << L"Notepad++ initialization: " << std::chrono::hh_mm_ss{ std::chrono::duration_cast<std::chrono::milliseconds>(nppInitTime) } << std::endl;
+		wss << L"Cherry++ initialization: " << std::chrono::hh_mm_ss{ std::chrono::duration_cast<std::chrono::milliseconds>(nppInitTime) } << std::endl;
 		wss << L"Plugins loading: " << std::chrono::hh_mm_ss{ std::chrono::duration_cast<std::chrono::milliseconds>(g_pluginsLoadingTime) } << std::endl;
 		wss << L"Last session loading: " << std::chrono::hh_mm_ss{ std::chrono::duration_cast<std::chrono::milliseconds>(sessionLoadingTime) } << std::endl;
 		wss << L"Command line params handling: " << std::chrono::hh_mm_ss{ std::chrono::duration_cast<std::chrono::milliseconds>(cmdlineParamsLoadingTime) } << std::endl;
 		wss << L"Total loading time: " << std::chrono::hh_mm_ss{ std::chrono::duration_cast<std::chrono::milliseconds>(nppInitTime + g_pluginsLoadingTime + sessionLoadingTime + cmdlineParamsLoadingTime) };
-		NppDarkMode::darkMessageBoxW(nullptr, wss.str().c_str(), L"Notepad++ loading time (hh:mm:ss.ms)", MB_OK);
+		NppDarkMode::darkMessageBoxW(nullptr, wss.str().c_str(), L"Cherry++ loading time (hh:mm:ss.ms)", MB_OK);
 	}
 
 	if (cmdLineParams->_displayCmdLineArgs)
