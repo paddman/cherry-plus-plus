@@ -17,7 +17,7 @@ try {
 	Copy-Item -Path .\plugins -Destination $binDir -Recurse
 
 	"Testing ..."
-	Invoke-Expression ($binDir + "\notepad++.exe | Out-Null")
+	Invoke-Expression ($binDir + "\cherry++.exe | Out-Null")
 
 	if (Test-Path -Path $pluginsSaveDir -PathType Container)
 	{
@@ -58,4 +58,3 @@ catch
 	"Unexpected behavior while URL detection test"
 	exit -1
 }
-
