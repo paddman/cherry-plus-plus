@@ -1,50 +1,60 @@
-What is Notepad++ ?
-===================
+# Cherry++
 
-[![GitHub release](https://img.shields.io/github/release/notepad-plus-plus/notepad-plus-plus.svg)](../../releases/latest)&nbsp;&nbsp;&nbsp;&nbsp;[![Build Status](https://img.shields.io/github/actions/workflow/status/notepad-plus-plus/notepad-plus-plus/CI_build.yml)](https://github.com/notepad-plus-plus/notepad-plus-plus/actions/workflows/CI_build.yml)
-&nbsp;&nbsp;&nbsp;&nbsp;[![Join the discussions at https://community.notepad-plus-plus.org/](https://notepad-plus-plus.org/assets/images/NppCommunityBadge.svg)](https://community.notepad-plus-plus.org/)
+Cherry++ is a fast native Windows text and code editor derived from the Notepad++ codebase.
+The project keeps the mature Scintilla/editor foundation and plugin compatibility where practical,
+while developing its own product identity, configuration namespace, UX, and future developer tooling.
 
-Notepad++ is a free (free as in both "free speech" and "free beer") source code
-editor and Notepad replacement that supports several programming languages and
-natural languages. Running in the MS Windows environment, its use is governed by
-[GPL License](LICENSE).
+> **Current development milestone:** Cherry++ v0.1 — Product Isolation
 
-See the [Notepad++ official site](https://notepad-plus-plus.org/) for more information.
+## v0.1 goals
 
+Cherry++ v0.1 establishes a clean boundary between Cherry++ and upstream Notepad++:
 
-Notepad++ GPG Release Key
--------------------------
-_Since the release of version 7.6.5 Notepad++ is signed using GPG with the following key:_
+- Cherry++ product name and Windows application identity
+- Cherry++-owned version namespace (`0.1.x`)
+- isolated per-user settings under `%APPDATA%\Cherry++`
+- portable mode remains supported through the existing local-configuration mechanism
+- Cherry++ and Notepad++ can be installed and used side-by-side without sharing user configuration
+- preserve the existing Notepad++ plugin API as the compatibility baseline
+- document the exact upstream baseline and sync policy
 
-- **Signer:** Notepad++
-- **E-mail:** don.h@free.fr
-- **Key ID:** 0x8D84F46E
-- **Key fingerprint:** 14BC E436 2749 B2B5 1F8C 7122 6C42 9F1D 8D84 F46E
-- **Key type:** RSA 4096/4096
-- **Created:** 2019-03-11
-- **Expires:** 2027-03-13
+The v0.1 work intentionally avoids large editor-engine rewrites. Product-specific code should be
+kept behind a small Cherry++ layer so future upstream synchronization remains manageable.
 
-https://github.com/notepad-plus-plus/notepad-plus-plus/blob/master/nppGpgPub.asc
+## Direction
 
+After product isolation, the planned development sequence is:
 
-Supported OS
-------------
+1. **v0.2** — Command Palette, Quick Open, Workspace
+2. **v0.3** — Git integration, Tasks, Problems, bottom panel
+3. **v0.4** — Language Server Protocol (LSP), symbols, diagnostics, intelligent completion
+4. **v0.5** — Cherry++ Plugin API v2 and optional AI providers
+5. **v1.0** — stable release/update pipeline, recovery, hardening, documentation
 
-All the Windows systems still supported by Microsoft are supported by Notepad++. However, not all Notepad++ users can or want to use the newest system. Here is the [Supported systems information](SUPPORTED_SYSTEM.md) you may need in case you are one of them.
+## Upstream relationship
 
+Cherry++ is derived from the open-source Notepad++ project. Upstream fixes and security updates are
+expected to continue flowing into Cherry++ while Cherry++-specific features remain isolated as much
+as possible. See [UPSTREAM.md](UPSTREAM.md) for the sync policy.
 
+Cherry++ is not the official Notepad++ distribution and should not present itself as one.
 
+## Supported OS
 
-Build Notepad++
----------------
+Cherry++ currently follows the Windows platform support inherited from the upstream codebase.
+See [SUPPORTED_SYSTEM.md](SUPPORTED_SYSTEM.md) for the current baseline.
 
-Please follow [build guide](BUILD.md) to build Notepad++ from source.
+## Build
 
+The existing Windows build system remains the v0.1 build baseline. See [BUILD.md](BUILD.md).
 
-Contribution
-------------
+## License
 
-Contributions are welcome. Be mindful of our [Contribution Rules](CONTRIBUTING.md) to increase the likelihood of your contribution getting accepted.
+Cherry++ is distributed under the [GNU General Public License](LICENSE), consistent with the
+upstream project. Existing upstream copyright and license notices are retained in inherited source
+files.
 
-[Notepad++ Contributors](https://github.com/notepad-plus-plus/notepad-plus-plus/graphs/contributors)
+## Credits
 
+Cherry++ is built on the work of the Notepad++ project, Scintilla, and their contributors.
+Upstream project: https://github.com/notepad-plus-plus/notepad-plus-plus
