@@ -11,7 +11,7 @@ namespace cherry::product
 	inline constexpr wchar_t displayName[] = L"Cherry++";
 	inline constexpr wchar_t executableName[] = L"cherry++.exe";
 	inline constexpr wchar_t appDataDirectory[] = L"Cherry++";
-	inline constexpr wchar_t windowClassName[] = L"CherryPlusPlus";
+	inline constexpr wchar_t windowClassName[] = L"Cherry++";
 	inline constexpr wchar_t projectUrl[] = L"https://github.com/paddman/cherry-plus-plus";
 
 	inline constexpr char version[] = "0.1.0-dev";
