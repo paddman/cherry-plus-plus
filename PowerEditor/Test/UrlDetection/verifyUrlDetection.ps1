@@ -58,3 +58,4 @@ catch
 	"Unexpected behavior while URL detection test"
 	exit -1
 }
+
