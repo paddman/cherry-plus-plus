@@ -27,8 +27,6 @@
 #include <unordered_set>
 #include <vector>
 
-#include "../../Cherry/CherryProduct.h"
-
 
 std::wstring folderBrowser(HWND parent, const std::wstring & title = L"", int outputCtrlID = 0, const wchar_t *defaultStr = NULL);
 std::wstring getFolderName(HWND parent, const wchar_t *defaultDir = NULL);
@@ -135,21 +133,6 @@ protected:
 
 std::wstring pathRemoveFileSpec(std::wstring & path);
 std::wstring pathAppend(std::wstring &strDest, const std::wstring & str2append);
-
-// Cherry++ v0.1 product-isolation shim.
-// Upstream currently appends the literal "Notepad++" when resolving its per-user
-// AppData directory. Route that product-folder literal to the Cherry++ namespace
-// without mass-editing the inherited Parameters.cpp implementation. Calls that
-// intentionally need the legacy directory can pass a std::wstring explicitly.
-template <size_t N>
-std::wstring pathAppend(std::wstring& strDest, const wchar_t (&str2append)[N])
-{
-	std::wstring productAwarePath{ str2append };
-	if (productAwarePath == cherry::product::legacyAppDataDirectory)
-		productAwarePath = cherry::product::appDataDirectory;
-	return pathAppend(strDest, productAwarePath);
-}
-
 COLORREF getCtrlBgColor(HWND hWnd);
 std::wstring stringToUpper(std::wstring strToConvert);
 std::wstring stringToLower(std::wstring strToConvert);
